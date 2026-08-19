@@ -61,14 +61,18 @@ const { headline, subhead, name, roles } = Astro.props;
 		text-align: left;
 		gap: 1rem;
 		padding: 2rem clamp(1.5rem, 6vw, 5rem);
-		animation: text-fade linear both;
+		animation-name: text-fade;
+		animation-timing-function: linear;
+		animation-fill-mode: both;
 		animation-timeline: --hero-exit;
 		animation-range: cover 0% cover 55%;
 	}
 
 	.hero-photo {
 		height: 100%;
-		animation: photo-fade linear both;
+		animation-name: photo-fade;
+		animation-timing-function: linear;
+		animation-fill-mode: both;
 		animation-timeline: --hero-exit;
 		animation-range: cover 0% cover 55%;
 	}
