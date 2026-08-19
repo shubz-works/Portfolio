@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GalleryHero from '../components/GalleryHero.astro';
-import PanelWall from '../components/PanelWall.astro';
+import CardFan from '../components/CardFan.astro';
 
-const panels = [
+const cards = [
 	{
 		label: 'Case Studies',
 		href: '/work#case-study',
@@ -50,7 +50,7 @@ const panels = [
 			</p>
 		</header>
 
-		<PanelWall panels={panels} />
+		<CardFan cards={cards} />
 	</section>
 </Layout>
 
