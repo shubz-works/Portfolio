@@ -5,7 +5,7 @@ const work = defineCollection({
 	loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
 	schema: z.object({
 		title: z.string(),
-		category: z.enum(['case-study', 'client-work', 'personal-work', 'brand-teardown']),
+		category: z.enum(['pitch', 'retainer', 'case-comp', 'mock']),
 		summary: z.string(),
 		context: z.string(), // e.g. "Finalist, XYZ Case Competition · Team of 4"
 		outcome: z.string().optional(),

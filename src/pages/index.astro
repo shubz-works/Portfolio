@@ -1,33 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GalleryHero from '../components/GalleryHero.astro';
-import CardFan from '../components/CardFan.astro';
+import Museum from '../components/Museum.astro';
+import SkillsWall from '../components/SkillsWall.astro';
 
-const cards = [
+const rooms = [
 	{
-		label: 'Case Studies',
-		href: '/work#case-study',
-		caption: 'Problem framing, analysis, recommendation — how I think, start to finish.',
+		eyebrow: 'Work Experience',
+		label: 'Adfactors PR',
+		caption: 'Agency pitches and a live retainer — NextOffice, YÊU Cosmetics, and a full year with PNB Housing Finance.',
+		href: '/work',
+		stat: { value: '171', label: 'pitch & retainer slides across 3 named accounts' },
 	},
 	{
-		label: 'Client Work',
-		href: '/work#client-work',
-		caption: 'Agency campaigns and PR programmes, with the outcomes they drove.',
+		eyebrow: 'Case Competitions',
+		label: 'The Briefs',
+		caption: 'Telecom, FMCG, luxury beauty, mobility, dermatology, and B2B distribution — strategy under six different constraints.',
+		href: '/case-competitions',
+		stat: { value: '6', label: 'competitions across six industries' },
 	},
 	{
-		label: 'Personal Work',
-		href: '/work#personal-work',
-		caption: 'Side projects and experiments I built because I wanted to.',
+		eyebrow: 'Mocks',
+		label: 'Solo Submissions',
+		caption: "Campus wellness tech and a banned brand's re-entry — built solo for HUL's SIP case track.",
+		href: '/mocks',
+		stat: { value: '2', label: 'independent case submissions' },
 	},
 	{
-		label: 'Brand Teardowns',
-		href: '/work#brand-teardown',
-		caption: 'Brands pulled apart: what works, what does not, what I would change.',
-	},
-	{
-		label: 'About Me',
-		href: '/about',
-		caption: 'The short version of the path from agency PR to general management.',
+		eyebrow: 'Reference',
+		label: 'Skills & Strategy Wall',
+		caption: 'The methodology, frameworks, and craft that repeat across every room in this gallery.',
+		href: '#skills-wall',
 	},
 ];
 ---
@@ -35,56 +38,12 @@ const cards = [
 <Layout title="Shubhangi Goyal — Marketer / Strategist / Creative" bleed>
 	<GalleryHero
 		headline="I collect ideas."
-		subhead="You're invited to see what I've made of them."
+		subhead="see what I've made of them."
 		name="Shubhangi Goyal"
 		roles={['Marketer', 'Strategist', 'Creative']}
-		alt="Shubhangi Goyal standing in a gallery hung with her work — PR coverage, the L'Oréal India Beauty Squad campaign, brand strategy notes — under the words 'I collect ideas.'"
 	/>
 
-	<section class="collection" id="collection">
-		<header class="intro">
-			<p class="eyebrow">The collection</p>
-			<h2>Five rooms. Start anywhere.</h2>
-			<p class="lede">
-				MBA @ IIM Kozhikode · ex-agency PR &amp; Marketing → General Management &amp; Brand roles
-			</p>
-		</header>
+	<Museum rooms={rooms} />
 
-		<CardFan cards={cards} />
-	</section>
+	<SkillsWall />
 </Layout>
-
-<style>
-	.collection {
-		max-width: 1080px;
-		margin: 0 auto;
-		padding: clamp(3.5rem, 9vw, 7rem) clamp(1.25rem, 4vw, 3rem) 6rem;
-	}
-
-	.intro {
-		max-width: 34rem;
-		margin-bottom: clamp(2rem, 5vw, 3.5rem);
-	}
-
-	.eyebrow {
-		margin: 0 0 0.75rem;
-		font-size: 0.75rem;
-		letter-spacing: 0.2em;
-		text-transform: uppercase;
-		color: var(--color-accent);
-	}
-
-	.intro h2 {
-		font-family: var(--font-display);
-		font-weight: 500;
-		font-size: clamp(1.9rem, 4.5vw, 3rem);
-		line-height: 1.1;
-		margin: 0 0 0.75rem;
-	}
-
-	.lede {
-		margin: 0;
-		color: var(--color-muted);
-		line-height: 1.6;
-	}
-</style>

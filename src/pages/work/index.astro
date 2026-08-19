@@ -4,11 +4,11 @@ import { getCollection } from 'astro:content';
 
 const work = await getCollection('work');
 
+// Work covers Adfactors agency work only — case competitions and mocks live
+// in their own sections (/case-competitions, /mocks), not mixed in here.
 const categories = [
-	{ key: 'case-study', label: 'Case Studies' },
-	{ key: 'client-work', label: 'Client Work' },
-	{ key: 'personal-work', label: 'Personal Work' },
-	{ key: 'brand-teardown', label: 'Brand Teardowns' },
+	{ key: 'pitch', label: 'New Business Pitches' },
+	{ key: 'retainer', label: 'Retainer Account' },
 ] as const;
 ---
 

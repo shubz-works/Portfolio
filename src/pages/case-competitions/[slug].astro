@@ -3,10 +3,8 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
 
 export async function getStaticPaths() {
-	const work = await getCollection('work', (entry) =>
-		['pitch', 'retainer'].includes(entry.data.category),
-	);
-	return work.map((entry) => ({
+	const items = await getCollection('work', (entry) => entry.data.category === 'case-comp');
+	return items.map((entry) => ({
 		params: { slug: entry.id },
 		props: { entry },
 	}));
@@ -26,17 +24,6 @@ const { Content } = await render(entry);
 		<Content />
 	</section>
 
-	{data.slides && data.slides.length > 0 && (
-		<section class="slides">
-			{data.slides.map((slide) => (
-				<figure>
-					<img src={slide.image} alt={slide.caption} loading="lazy" />
-					<figcaption>{slide.caption}</figcaption>
-				</figure>
-			))}
-		</section>
-	)}
-
 	{data.outcome && (
 		<section class="outcome">
 			<h2>Outcome</h2>
@@ -44,14 +31,7 @@ const { Content } = await render(entry);
 		</section>
 	)}
 
-	{data.reflection && (
-		<section class="reflection">
-			<h2>Reflection</h2>
-			<p>{data.reflection}</p>
-		</section>
-	)}
-
-	<a class="back" href="/work">← Back to work</a>
+	<a class="back" href="/case-competitions">← Back to case competitions</a>
 </Layout>
 
 <style>
@@ -64,22 +44,6 @@ const { Content } = await render(entry);
 	.summary {
 		font-size: 1.1rem;
 		opacity: 0.85;
-	}
-	.slides {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-		margin: 2.5rem 0;
-	}
-	.slides img {
-		max-width: 100%;
-		border-radius: 8px;
-		border: 1px solid var(--color-border);
-	}
-	.slides figcaption {
-		margin-top: 0.5rem;
-		font-size: 0.9rem;
-		opacity: 0.75;
 	}
 	.back {
 		display: inline-block;

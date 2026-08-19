@@ -1,0 +1,102 @@
+---
+const groups = [
+	{
+		label: 'Method',
+		items: ['Primary research', 'Street & digital surveys', 'Market sizing', 'Competitor/SOV audits', 'Weighted decision matrices', 'ROI & working-capital modeling'],
+	},
+	{
+		label: 'Strategy',
+		items: ['Phased GTM planning', 'Positioning & narrative', 'Crisis management', 'Spokesperson programs', 'Regional expansion PR', 'KPI & risk frameworks'],
+	},
+	{
+		label: 'Craft',
+		items: ['Named campaign ideation', 'Cultural/emotional marketing', 'Influencer & media mapping', 'Pitch deck storytelling', 'Retainer account planning'],
+	},
+];
+---
+
+<section class="skills-wall" id="skills-wall">
+	<div class="wall-inner">
+		<p class="eyebrow">Reference wall</p>
+		<h2>Skills &amp; strategy</h2>
+		<p class="intro">The methodology that repeats across every industry above — telecom, FMCG, luxury beauty, mobility, dermatology, housing finance.</p>
+
+		<div class="groups">
+			{groups.map((group) => (
+				<div class="group">
+					<h3>{group.label}</h3>
+					<ul>
+						{group.items.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<style>
+	.skills-wall {
+		background: var(--color-bg);
+		padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 6vw, 5rem);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.wall-inner {
+		max-width: 64rem;
+		margin: 0 auto;
+	}
+
+	.eyebrow {
+		margin: 0;
+		font-size: 0.75rem;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		color: var(--color-accent);
+	}
+
+	h2 {
+		margin: 0.5rem 0 0.75rem;
+		font-family: var(--font-display);
+		font-weight: 500;
+		font-size: clamp(2rem, 4.5vw, 3rem);
+	}
+
+	.intro {
+		margin: 0 0 2.5rem;
+		max-width: 36rem;
+		color: var(--color-muted);
+		line-height: 1.6;
+	}
+
+	.groups {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+		gap: clamp(2rem, 4vw, 3rem);
+	}
+
+	.group h3 {
+		margin: 0 0 1rem;
+		font-size: 0.8rem;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--color-muted);
+	}
+
+	.group ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		gap: 0.6rem;
+	}
+
+	.group li {
+		font-family: var(--font-display);
+		font-size: 1.1rem;
+		padding-bottom: 0.6rem;
+		border-bottom: 1px solid var(--color-border);
+	}
+</style>

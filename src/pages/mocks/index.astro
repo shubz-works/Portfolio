@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('work', (entry) => entry.data.category === 'mock')).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+---
+
+<Layout title="Mocks">
+	<h1>Mocks</h1>
+
+	<div class="cards">
+		{items.map((item) => (
+			<a class="card" href={`/mocks/${item.id}`}>
+				<h3>{item.data.title}</h3>
+				<p>{item.data.summary}</p>
+			</a>
+		))}
+	</div>
+</Layout>
+
+<style>
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.25rem;
+		margin: 2.5rem 0;
+	}
+	.card {
+		display: block;
+		border: 1px solid var(--color-border);
+		border-radius: 12px;
+		padding: 1.25rem;
+		text-decoration: none;
+		color: inherit;
+	}
+</style>
