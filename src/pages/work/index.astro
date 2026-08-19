@@ -19,7 +19,7 @@ const categories = [
 		const items = work.filter((w) => w.data.category === cat.key).sort((a, b) => a.data.order - b.data.order);
 		if (items.length === 0) return null;
 		return (
-			<section class="group">
+			<section class="group" id={cat.key}>
 				<h2>{cat.label}</h2>
 				<div class="cards">
 					{items.map((item) => (
