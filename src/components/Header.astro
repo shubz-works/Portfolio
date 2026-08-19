@@ -1,0 +1,52 @@
+---
+const nav = [
+	{ href: '/work', label: 'Work' },
+	{ href: '/about', label: 'About' },
+];
+
+// TODO: replace with the real Drive permalink once the resume is uploaded.
+const resumeUrl = 'https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view';
+---
+
+<header class="site-header">
+	<a class="brand" href="/">Your Name</a>
+	<nav>
+		{nav.map((item) => (
+			<a href={item.href}>{item.label}</a>
+		))}
+		<a class="resume-link" href={resumeUrl} target="_blank" rel="noopener noreferrer">
+			Resume
+		</a>
+	</nav>
+</header>
+
+<style>
+	.site-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 1.5rem 2rem;
+		max-width: 960px;
+		margin: 0 auto;
+	}
+	.brand {
+		font-weight: 600;
+		text-decoration: none;
+		color: inherit;
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+	nav a {
+		text-decoration: none;
+		color: inherit;
+	}
+	.resume-link {
+		border: 1px solid currentColor;
+		padding: 0.35rem 0.9rem;
+		border-radius: 999px;
+		font-size: 0.9rem;
+	}
+</style>

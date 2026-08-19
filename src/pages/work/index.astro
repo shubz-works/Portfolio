@@ -1,0 +1,54 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const work = await getCollection('work');
+
+const categories = [
+	{ key: 'case-study', label: 'Case Studies' },
+	{ key: 'client-work', label: 'Client Work' },
+	{ key: 'personal-work', label: 'Personal Work' },
+	{ key: 'brand-teardown', label: 'Brand Teardowns' },
+] as const;
+---
+
+<Layout title="Work">
+	<h1>Work</h1>
+
+	{categories.map((cat) => {
+		const items = work.filter((w) => w.data.category === cat.key).sort((a, b) => a.data.order - b.data.order);
+		if (items.length === 0) return null;
+		return (
+			<section class="group">
+				<h2>{cat.label}</h2>
+				<div class="cards">
+					{items.map((item) => (
+						<a class="card" href={`/work/${item.id}`}>
+							<h3>{item.data.title}</h3>
+							<p>{item.data.summary}</p>
+						</a>
+					))}
+				</div>
+			</section>
+		);
+	})}
+</Layout>
+
+<style>
+	.group {
+		margin: 2.5rem 0;
+	}
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+		gap: 1.25rem;
+	}
+	.card {
+		display: block;
+		border: 1px solid rgba(0, 0, 0, 0.12);
+		border-radius: 12px;
+		padding: 1.25rem;
+		text-decoration: none;
+		color: inherit;
+	}
+</style>

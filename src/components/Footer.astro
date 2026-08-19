@@ -1,0 +1,42 @@
+---
+// TODO: fill in real handles/urls once known.
+const socials = [
+	{ label: 'LinkedIn', href: 'https://linkedin.com/in/REPLACE_ME' },
+	{ label: 'Email', href: 'mailto:REPLACE_ME@example.com' },
+];
+---
+
+<footer class="site-footer">
+	<span class="name">Your Name</span>
+	<a href="/work">Work</a>
+	<div class="socials">
+		{socials.map((s) => (
+			<a href={s.href} target={s.href.startsWith('mailto:') ? undefined : '_blank'} rel="noopener noreferrer">
+				{s.label}
+			</a>
+		))}
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 1rem;
+		padding: 2rem;
+		max-width: 960px;
+		margin: 0 auto;
+		font-size: 0.9rem;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.socials {
+		display: flex;
+		gap: 1rem;
+	}
+	.site-footer a {
+		color: inherit;
+		text-decoration: none;
+	}
+</style>
