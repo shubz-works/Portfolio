@@ -1,0 +1,115 @@
+---
+interface Props {
+	/* The render carries this text in its pixels, so on screen it is not drawn
+	   again — it is exposed to screen readers and search engines instead. */
+	headline: string;
+	subhead: string;
+	name: string;
+	roles: string[];
+	alt: string;
+	/* Swap this for a new render; nothing else needs to change. */
+	image?: string;
+}
+
+const {
+	headline,
+	subhead,
+	name,
+	roles,
+	alt,
+	image = '/hero-gallery.png',
+} = Astro.props;
+---
+
+<section class="hero">
+	<h1 class="sr-only">
+		{headline} {subhead} {name} — {roles.join(' / ')}
+	</h1>
+
+	<img class="plate" src={image} alt={alt} fetchpriority="high" />
+
+	<a class="scroll-cue" href="#collection">
+		<span>the collection</span>
+		<span class="arrow" aria-hidden="true">↓</span>
+	</a>
+</section>
+
+<style>
+	.hero {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		/* svh so mobile browser chrome does not crop the composition. */
+		min-height: 100svh;
+		background: #14100c;
+		color: #f7f3ec;
+		overflow: hidden;
+	}
+
+	/* contain, not cover: the headline is part of the artwork, so no edge of
+	   the composition may ever be cropped. */
+	.plate {
+		display: block;
+		width: 100%;
+		/* Leaves a band below the artwork for the scroll cue, so it never sits
+		   on top of the byline baked into the image. */
+		max-height: calc(100svh - 3.5rem);
+		object-fit: contain;
+	}
+
+	.scroll-cue {
+		padding: 0.7rem 0 1.1rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.4rem;
+		color: #f7f3ec;
+		text-decoration: none;
+		font-size: 0.7rem;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		opacity: 0.65;
+		text-shadow: 0 1px 10px rgba(0, 0, 0, 0.7);
+		transition: opacity 0.2s ease;
+	}
+
+	.scroll-cue:hover,
+	.scroll-cue:focus-visible {
+		opacity: 1;
+	}
+
+	.arrow {
+		animation: nudge 2s ease-in-out infinite;
+	}
+
+	@keyframes nudge {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(4px);
+		}
+	}
+
+	/* The artwork is landscape, so on narrow screens a full-viewport hero would
+	   letterbox it into a band floating in dead space. Let the hero height
+	   follow the artwork instead. */
+	@media (max-width: 900px) {
+		.hero {
+			min-height: 0;
+			padding-top: 4.5rem;
+		}
+		.plate {
+			max-height: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.arrow {
+			animation: none;
+		}
+	}
+</style>

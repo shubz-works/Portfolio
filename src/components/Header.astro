@@ -6,10 +6,17 @@ const nav = [
 
 // TODO: replace with the real Drive permalink once the resume is uploaded.
 const resumeUrl = 'https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view';
+
+interface Props {
+	// Float over a dark full-bleed hero instead of sitting in the page flow.
+	overlay?: boolean;
+}
+
+const { overlay = false } = Astro.props;
 ---
 
-<header class="site-header">
-	<a class="brand" href="/">Your Name</a>
+<header class:list={['site-header', { overlay }]}>
+	<a class="brand" href="/">Shubhangi Goyal</a>
 	<nav>
 		{nav.map((item) => (
 			<a href={item.href}>{item.label}</a>
@@ -40,6 +47,21 @@ const resumeUrl = 'https://drive.google.com/file/d/REPLACE_WITH_FILE_ID/view';
 		padding: 1.5rem 2rem;
 		max-width: 960px;
 		margin: 0 auto;
+	}
+	/* Sits on top of the hero image; always light text since the hero is dark
+	   in both themes. */
+	.site-header.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 5;
+		max-width: none;
+		padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+		color: #f5f1ea;
+	}
+	.site-header.overlay #theme-toggle {
+		border-color: rgba(245, 241, 234, 0.4);
 	}
 	.brand {
 		font-weight: 600;
